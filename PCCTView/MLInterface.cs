@@ -28,6 +28,7 @@ namespace PCCTView
 			}
 		}
 
+		// UI thread
 		private static void uiThread()
 		{
 			// check duplicate main window
@@ -41,6 +42,11 @@ namespace PCCTView
 			form = null;
 		}
 
+		public static bool IsWindowExist()
+		{
+			return form != null;
+		}
+		
 		/// <summary>
 		/// Query ready-state of all settings for next steps.
 		/// If ready, a subsequent call to GetSetting() will retrieve parameters.
@@ -53,7 +59,7 @@ namespace PCCTView
 		}
 
 		/// <summary>
-		/// Get all settings. Must make sure all settings are ready.
+		/// Get all settings.
 		/// </summary>
 		/// <returns></returns>
 		public static Setting GetSetting()
@@ -64,13 +70,12 @@ namespace PCCTView
 			return form.settings;
 		}
 
-		public static bool IsWindowExist()
-		{
-			return form != null;
-		}
+		/******************************************/
+		/* Followings are respondings to MainForm */
+		/******************************************/
 
 		/// <summary>
-		/// Call this when data is ready to be sent to MainWindow.
+		/// Must call this when data is ready to be sent to MainWindow.
 		/// </summary>
 		public static void SetServerDataReady()
 		{
@@ -86,14 +91,16 @@ namespace PCCTView
 			form.message = s;
 		}
 
-		public static void SendMatrix(double[,] mat, int position=1)
+		public static void PlotImage(float[] mat, int width, string title=null)
 		{
 			if (form == null)
 				throw new NullReferenceException("主窗口不存在");
 
+			form.NewFigure(mat,width,title);
+			//todo: add conversion to linear F32 array -> request MainForm to start a new FigureForm and buffer
 		}
 
-//		public static void Send3DArray(double[,,] arr, int position=1)
+//		public static void Send3DArray(double[,,] arr, string title=null)
 //		{
 //			if (form == null)
 //				throw new NullReferenceException("主窗口不存在");

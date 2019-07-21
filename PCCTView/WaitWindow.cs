@@ -27,13 +27,10 @@ namespace PCCTView
 
 		private void timer1_Tick(object sender, EventArgs e)
 		{
-			if (parentForm.message!=null)
+			if (message != parentForm.message)
 			{
-				if (message != parentForm.message)
-				{
-					message = parentForm.message;
-					txtMsg.Text = message;
-				}
+				message = parentForm.message;
+				txtMsg.Text = message;
 			}
 
 			if (!parentForm.serverDataReady) return;

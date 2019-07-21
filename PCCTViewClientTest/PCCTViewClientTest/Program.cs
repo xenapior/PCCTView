@@ -33,7 +33,7 @@ Repeat:		do
 			Thread.Sleep(1000);
 			WriteLine("Complete!");
 			MLInterface.SetServerDataReady();	// neccesary
-			MLInterface.SendMatrix(null);	// final data
+			MLInterface.PlotImage(null,0);	// final data
 			// MATLAB end
 
 			goto Repeat;
