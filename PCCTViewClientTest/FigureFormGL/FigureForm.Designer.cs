@@ -34,6 +34,8 @@
 			this.btnSave = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.btnRectROI = new System.Windows.Forms.ToolStripButton();
+			this.btnLinROI = new System.Windows.Forms.ToolStripButton();
+			this.glView = new OpenTK.GLControl();
 			this.toolbar.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -43,7 +45,8 @@
             this.btnOpen,
             this.btnSave,
             this.toolStripSeparator1,
-            this.btnRectROI});
+            this.btnRectROI,
+            this.btnLinROI});
 			this.toolbar.Location = new System.Drawing.Point(0, 0);
 			this.toolbar.Name = "toolbar";
 			this.toolbar.Size = new System.Drawing.Size(436, 25);
@@ -82,12 +85,37 @@
 			this.btnRectROI.Name = "btnRectROI";
 			this.btnRectROI.Size = new System.Drawing.Size(23, 22);
 			this.btnRectROI.Text = "划出矩形ROI";
+			this.btnRectROI.Click += new System.EventHandler(this.btnRectROI_Click);
+			// 
+			// btnLinROI
+			// 
+			this.btnLinROI.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.btnLinROI.Image = ((System.Drawing.Image)(resources.GetObject("btnLinROI.Image")));
+			this.btnLinROI.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.btnLinROI.Name = "btnLinROI";
+			this.btnLinROI.Size = new System.Drawing.Size(23, 22);
+			this.btnLinROI.Text = "划出直线ROI";
+			this.btnLinROI.Click += new System.EventHandler(this.btnLinROI_Click);
+			// 
+			// glView
+			// 
+			this.glView.BackColor = System.Drawing.Color.Black;
+			this.glView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.glView.Location = new System.Drawing.Point(0, 25);
+			this.glView.Name = "glView";
+			this.glView.Size = new System.Drawing.Size(436, 299);
+			this.glView.TabIndex = 1;
+			this.glView.VSync = false;
+			this.glView.Load += new System.EventHandler(this.glView_Load);
+			this.glView.Paint += new System.Windows.Forms.PaintEventHandler(this.glView_Paint);
+			this.glView.Resize += new System.EventHandler(this.glView_Resize);
 			// 
 			// FigureForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(436, 324);
+			this.Controls.Add(this.glView);
 			this.Controls.Add(this.toolbar);
 			this.Name = "FigureForm";
 			this.Text = "FigureForm";
@@ -105,5 +133,7 @@
 		private System.Windows.Forms.ToolStripButton btnSave;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton btnRectROI;
+		private OpenTK.GLControl glView;
+		private System.Windows.Forms.ToolStripButton btnLinROI;
 	}
 }
