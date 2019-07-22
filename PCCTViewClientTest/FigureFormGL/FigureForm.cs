@@ -24,12 +24,10 @@ namespace FigureFormGL
 
 		private void btnRectROI_Click(object sender, EventArgs e)
 		{
-			test1();
 		}
 
 		private void btnLinROI_Click(object sender, EventArgs e)
 		{
-			test2();
 		}
 
 		private void glView_Load(object sender, EventArgs e)
@@ -39,8 +37,6 @@ namespace FigureFormGL
 				glView.Enabled = false;
 				return;
 			}
-
-
 		}
 
 		private void glView_Resize(object sender, EventArgs e)
@@ -49,7 +45,6 @@ namespace FigureFormGL
 
 		private void glView_Paint(object sender, PaintEventArgs e)
 		{
-			InitView();
 		}
 	}
 }

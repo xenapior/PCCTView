@@ -55,19 +55,17 @@
     <Compile Include="FigureForm.Designer.cs">
       <DependentUpon>FigureForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FigureFormGLView.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="OpenTK.dll.config" />
-    <None Include="packages.config" />
+    <Compile Include="ViewUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FigureForm.resx">
       <DependentUpon>FigureForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
