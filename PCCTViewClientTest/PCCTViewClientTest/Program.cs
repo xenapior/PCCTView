@@ -33,7 +33,7 @@ Repeat:		do
 			Thread.Sleep(1000);
 			WriteLine("Complete!");
 			MLInterface.SetServerDataReady();	// neccesary
-			MLInterface.PlotImage(null,0);	// final data
+			MLInterface.PlotImage(new float[]{1,2,3,4,5,6,7,8,9,10,11,12},3);
 			// MATLAB end
 
 			goto Repeat;

@@ -30,11 +30,12 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FigureForm));
 			this.toolbar = new System.Windows.Forms.ToolStrip();
-			this.btnOpen = new System.Windows.Forms.ToolStripButton();
-			this.btnSave = new System.Windows.Forms.ToolStripButton();
+			this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
+			this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+			this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.btnRectROI = new System.Windows.Forms.ToolStripButton();
-			this.btnLinROI = new System.Windows.Forms.ToolStripButton();
+			this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.glView = new OpenTK.GLControl();
 			this.toolbar.SuspendLayout();
 			this.SuspendLayout();
@@ -42,60 +43,63 @@
 			// toolbar
 			// 
 			this.toolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnOpen,
-            this.btnSave,
+            this.openToolStripButton,
+            this.saveToolStripButton,
+            this.toolStripSeparator,
+            this.cutToolStripButton,
             this.toolStripSeparator1,
-            this.btnRectROI,
-            this.btnLinROI});
+            this.helpToolStripButton});
 			this.toolbar.Location = new System.Drawing.Point(0, 0);
 			this.toolbar.Name = "toolbar";
-			this.toolbar.Size = new System.Drawing.Size(436, 25);
+			this.toolbar.Size = new System.Drawing.Size(443, 25);
 			this.toolbar.TabIndex = 0;
 			this.toolbar.Text = "toolStrip1";
 			// 
-			// btnOpen
+			// openToolStripButton
 			// 
-			this.btnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnOpen.Image")));
-			this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnOpen.Name = "btnOpen";
-			this.btnOpen.Size = new System.Drawing.Size(23, 22);
-			this.btnOpen.Text = "打开";
+			this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
+			this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.openToolStripButton.Name = "openToolStripButton";
+			this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
+			this.openToolStripButton.Text = "&Open";
 			// 
-			// btnSave
+			// saveToolStripButton
 			// 
-			this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-			this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnSave.Name = "btnSave";
-			this.btnSave.Size = new System.Drawing.Size(23, 22);
-			this.btnSave.Text = "另存为";
+			this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
+			this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.saveToolStripButton.Name = "saveToolStripButton";
+			this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
+			this.saveToolStripButton.Text = "&Save";
+			// 
+			// toolStripSeparator
+			// 
+			this.toolStripSeparator.Name = "toolStripSeparator";
+			this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
+			// 
+			// cutToolStripButton
+			// 
+			this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
+			this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.cutToolStripButton.Name = "cutToolStripButton";
+			this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
+			this.cutToolStripButton.Text = "C&ut";
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
 			// 
-			// btnRectROI
+			// helpToolStripButton
 			// 
-			this.btnRectROI.CheckOnClick = true;
-			this.btnRectROI.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnRectROI.Image = ((System.Drawing.Image)(resources.GetObject("btnRectROI.Image")));
-			this.btnRectROI.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnRectROI.Name = "btnRectROI";
-			this.btnRectROI.Size = new System.Drawing.Size(23, 22);
-			this.btnRectROI.Text = "划出矩形ROI";
-			this.btnRectROI.Click += new System.EventHandler(this.btnRectROI_Click);
-			// 
-			// btnLinROI
-			// 
-			this.btnLinROI.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnLinROI.Image = ((System.Drawing.Image)(resources.GetObject("btnLinROI.Image")));
-			this.btnLinROI.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnLinROI.Name = "btnLinROI";
-			this.btnLinROI.Size = new System.Drawing.Size(23, 22);
-			this.btnLinROI.Text = "划出直线ROI";
-			this.btnLinROI.Click += new System.EventHandler(this.btnLinROI_Click);
+			this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.helpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripButton.Image")));
+			this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.helpToolStripButton.Name = "helpToolStripButton";
+			this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
+			this.helpToolStripButton.Text = "He&lp";
 			// 
 			// glView
 			// 
@@ -103,7 +107,7 @@
 			this.glView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.glView.Location = new System.Drawing.Point(0, 25);
 			this.glView.Name = "glView";
-			this.glView.Size = new System.Drawing.Size(436, 299);
+			this.glView.Size = new System.Drawing.Size(443, 309);
 			this.glView.TabIndex = 1;
 			this.glView.VSync = false;
 			this.glView.Load += new System.EventHandler(this.glView_Load);
@@ -114,7 +118,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(436, 324);
+			this.ClientSize = new System.Drawing.Size(443, 334);
 			this.Controls.Add(this.glView);
 			this.Controls.Add(this.toolbar);
 			this.Name = "FigureForm";
@@ -129,11 +133,12 @@
 		#endregion
 
 		private System.Windows.Forms.ToolStrip toolbar;
-		private System.Windows.Forms.ToolStripButton btnOpen;
-		private System.Windows.Forms.ToolStripButton btnSave;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripButton btnRectROI;
 		private OpenTK.GLControl glView;
-		private System.Windows.Forms.ToolStripButton btnLinROI;
+		private System.Windows.Forms.ToolStripButton openToolStripButton;
+		private System.Windows.Forms.ToolStripButton saveToolStripButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+		private System.Windows.Forms.ToolStripButton cutToolStripButton;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripButton helpToolStripButton;
 	}
 }

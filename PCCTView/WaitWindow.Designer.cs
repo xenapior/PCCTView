@@ -32,6 +32,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			this.txtMsg = new System.Windows.Forms.Label();
+			this.picWaitAni = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.picWaitAni)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -39,7 +41,7 @@
 			this.label1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.label1.Location = new System.Drawing.Point(3, 9);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(292, 24);
+			this.label1.Size = new System.Drawing.Size(281, 24);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "正在处理数据";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -51,20 +53,32 @@
 			// 
 			// txtMsg
 			// 
-			this.txtMsg.Location = new System.Drawing.Point(1, 79);
+			this.txtMsg.Location = new System.Drawing.Point(4, 94);
 			this.txtMsg.Name = "txtMsg";
-			this.txtMsg.Size = new System.Drawing.Size(294, 38);
+			this.txtMsg.Size = new System.Drawing.Size(283, 26);
 			this.txtMsg.TabIndex = 1;
-			this.txtMsg.Text = "Loading";
+			this.txtMsg.Text = "Progress";
 			this.txtMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.txtMsg.UseWaitCursor = true;
+			// 
+			// picWaitAni
+			// 
+			this.picWaitAni.InitialImage = null;
+			this.picWaitAni.Location = new System.Drawing.Point(118, 36);
+			this.picWaitAni.Name = "picWaitAni";
+			this.picWaitAni.Size = new System.Drawing.Size(48, 48);
+			this.picWaitAni.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.picWaitAni.TabIndex = 2;
+			this.picWaitAni.TabStop = false;
+			this.picWaitAni.UseWaitCursor = true;
 			// 
 			// WaitWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(296, 126);
+			this.ClientSize = new System.Drawing.Size(284, 121);
 			this.ControlBox = false;
+			this.Controls.Add(this.picWaitAni);
 			this.Controls.Add(this.txtMsg);
 			this.Controls.Add(this.label1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -76,6 +90,7 @@
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.UseWaitCursor = true;
 			this.Load += new System.EventHandler(this.WaitWindow_Load);
+			((System.ComponentModel.ISupportInitialize)(this.picWaitAni)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -85,5 +100,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Timer timer1;
 		private System.Windows.Forms.Label txtMsg;
+		private System.Windows.Forms.PictureBox picWaitAni;
 	}
 }
