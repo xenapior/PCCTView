@@ -81,7 +81,7 @@ namespace PCCTView
 		{
 			if (form == null)
 				throw new NullReferenceException("主窗口不存在");
-			form.serverDataReady = true;
+			form.stopWaiting = true;
 		}
 
 		public static void SendTextMsg(string s)
@@ -91,20 +91,12 @@ namespace PCCTView
 			form.message = s;
 		}
 
-		public static void PlotImage(float[] mat, int width, string title=null)
+		public static void PlotImage(float[] mat, int height, string title=null)
 		{
 			if (form == null)
 				throw new NullReferenceException("主窗口不存在");
 
-			form.NewFigure(mat,width,title);
-			//todo: add conversion to linear F32 array -> request MainForm to start a new FigureForm and buffer
+			form.NewFigure(mat,height,title);
 		}
-
-//		public static void Send3DArray(double[,,] arr, string title=null)
-//		{
-//			if (form == null)
-//				throw new NullReferenceException("主窗口不存在");
-//
-//		}
 	}
 }

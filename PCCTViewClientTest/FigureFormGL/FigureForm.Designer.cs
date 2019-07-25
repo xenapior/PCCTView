@@ -30,21 +30,20 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FigureForm));
 			this.toolbar = new System.Windows.Forms.ToolStrip();
-			this.glView = new OpenTK.GLControl();
-			this.btnOpen = new System.Windows.Forms.ToolStripButton();
+			this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
 			this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+			this.glView = new OpenTK.GLControl();
 			this.toolbar.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// toolbar
 			// 
-			this.toolbar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnOpen,
+            this.openToolStripButton,
             this.saveToolStripButton,
             this.toolStripSeparator,
             this.cutToolStripButton,
@@ -52,30 +51,18 @@
             this.helpToolStripButton});
 			this.toolbar.Location = new System.Drawing.Point(0, 0);
 			this.toolbar.Name = "toolbar";
-			this.toolbar.Size = new System.Drawing.Size(436, 25);
+			this.toolbar.Size = new System.Drawing.Size(443, 25);
 			this.toolbar.TabIndex = 0;
+			this.toolbar.Text = "toolStrip1";
 			// 
-			// glView
+			// openToolStripButton
 			// 
-			this.glView.BackColor = System.Drawing.Color.Black;
-			this.glView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.glView.Location = new System.Drawing.Point(0, 25);
-			this.glView.Name = "glView";
-			this.glView.Size = new System.Drawing.Size(436, 299);
-			this.glView.TabIndex = 1;
-			this.glView.VSync = false;
-			this.glView.Load += new System.EventHandler(this.glView_Load);
-			this.glView.Paint += new System.Windows.Forms.PaintEventHandler(this.glView_Paint);
-			this.glView.Resize += new System.EventHandler(this.glView_Resize);
-			// 
-			// btnOpen
-			// 
-			this.btnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.btnOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnOpen.Image")));
-			this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.btnOpen.Name = "btnOpen";
-			this.btnOpen.Size = new System.Drawing.Size(23, 22);
-			this.btnOpen.Text = "打开";
+			this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
+			this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.openToolStripButton.Name = "openToolStripButton";
+			this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
+			this.openToolStripButton.Text = "&Open";
 			// 
 			// saveToolStripButton
 			// 
@@ -114,11 +101,24 @@
 			this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
 			this.helpToolStripButton.Text = "He&lp";
 			// 
+			// glView
+			// 
+			this.glView.BackColor = System.Drawing.Color.Black;
+			this.glView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.glView.Location = new System.Drawing.Point(0, 25);
+			this.glView.Name = "glView";
+			this.glView.Size = new System.Drawing.Size(443, 309);
+			this.glView.TabIndex = 1;
+			this.glView.VSync = false;
+			this.glView.Load += new System.EventHandler(this.glView_Load);
+			this.glView.Paint += new System.Windows.Forms.PaintEventHandler(this.glView_Paint);
+			this.glView.Resize += new System.EventHandler(this.glView_Resize);
+			// 
 			// FigureForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(436, 324);
+			this.ClientSize = new System.Drawing.Size(443, 334);
 			this.Controls.Add(this.glView);
 			this.Controls.Add(this.toolbar);
 			this.Name = "FigureForm";
@@ -134,7 +134,7 @@
 
 		private System.Windows.Forms.ToolStrip toolbar;
 		private OpenTK.GLControl glView;
-		private System.Windows.Forms.ToolStripButton btnOpen;
+		private System.Windows.Forms.ToolStripButton openToolStripButton;
 		private System.Windows.Forms.ToolStripButton saveToolStripButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
 		private System.Windows.Forms.ToolStripButton cutToolStripButton;

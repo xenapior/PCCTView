@@ -16,51 +16,54 @@ namespace PCCTView
 	{
 		public volatile bool SettingReady;
 		public Setting settings = new Setting();
-		public volatile bool serverDataReady;
+		public volatile bool stopWaiting;
 		public string message;
 
 		private int figureCount = 1;
-
 		public MainForm()
 		{
 			InitializeComponent();
 		}
 
-		public void NewFigure(float[] data, int width, string title = null)
+		public void NewFigure(float[] data, int height, string title = null)
 		{
 			if (title == null)
-			{
 				title = "";
-			}
 			else
-			{
 				title = "-" + title;
-			}
-			if (width < 1)
-				width = 1;
+			if (height < 1)
+				height = 1;
 
-			FigureForm figure = new FigureForm();
-			figure.image = data;
-			figure.imWidth = width;
+			FigureForm figure = new FigureForm { image = data, imHeight = height };
 			if (data != null)
-				figure.imHeight = data.Length / width;
+				figure.imWidth = data.Length / height;
 			figure.Text = string.Format($"图像{figureCount}{title}");
-			Invoke(new Action(()=>figure.Show(this)));
+			if (data != null)
+				figure.Text = figure.Text + " 宽度" + figure.imWidth + " 高度" + height;
+			Invoke(new Action(() => figure.Show()));
 			figureCount++;
 		}
 
 		private void btnStart_Click(object sender, EventArgs e)
 		{
+			if (!validateAllSettings())
+				return;
 			saveSetting();
 			SettingReady = true;
-			serverDataReady = false;
+			stopWaiting = false;
 			message = "计算中";
 
-			WaitWindow waitForm = new WaitWindow {parentForm = this, StartPosition = FormStartPosition.Manual};
+			WaitWindow waitForm = new WaitWindow { parentForm = this, StartPosition = FormStartPosition.Manual };
 			waitForm.Left = Left + (Width - waitForm.Width) / 2;
 			waitForm.Top = Top + (Height - waitForm.Height) / 2;
 			waitForm.ShowDialog();
 			waitForm.Dispose();
+		}
+
+		private bool validateAllSettings()
+		{
+			//todo: add verification to all settings
+			return true;
 		}
 
 		private void btnQuit_Click(object sender, EventArgs e)

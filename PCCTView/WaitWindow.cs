@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PCCTView.Properties;
 
 namespace PCCTView
 {
@@ -14,6 +16,7 @@ namespace PCCTView
 	{
 		public MainForm parentForm;
 		private string message;
+		private Image waitAnimation;
 
 		public WaitWindow()
 		{
@@ -22,7 +25,15 @@ namespace PCCTView
 
 		private void WaitWindow_Load(object sender, EventArgs e)
 		{
+			waitAnimation=Resources.ResourceManager.GetObject("waitAni") as Image;
+			ImageAnimator.Animate(waitAnimation,onAnimate);
+			picWaitAni.Image = waitAnimation;
 			timer1.Start();
+		}
+
+		private void onAnimate(object o, EventArgs e)
+		{
+			ImageAnimator.UpdateFrames();
 		}
 
 		private void timer1_Tick(object sender, EventArgs e)
@@ -33,8 +44,11 @@ namespace PCCTView
 				txtMsg.Text = message;
 			}
 
-			if (!parentForm.serverDataReady) return;
+			if (!parentForm.stopWaiting) 
+				return;
+			
 			timer1.Stop();
+			ImageAnimator.StopAnimate(waitAnimation,null);
 			Close();
 		}
 	}
