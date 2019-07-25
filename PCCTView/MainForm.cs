@@ -19,29 +19,38 @@ namespace PCCTView
 		public volatile bool stopWaiting;
 		public string message;
 
-		private int figureCount = 1;
+		private int figureCount;
+
 		public MainForm()
 		{
 			InitializeComponent();
 		}
 
-		public void NewFigure(float[] data, int height, string title = null)
+		public void PlotNewFigure(float[] data, int height, string title = null)
 		{
 			if (title == null)
 				title = "";
 			else
 				title = "-" + title;
-			if (height < 1)
-				height = 1;
 
-			FigureForm figure = new FigureForm { image = data, imHeight = height };
-			if (data != null)
-				figure.imWidth = data.Length / height;
-			figure.Text = string.Format($"图像{figureCount}{title}");
-			if (data != null)
-				figure.Text = figure.Text + " 宽度" + figure.imWidth + " 高度" + height;
-			Invoke(new Action(() => figure.Show()));
 			figureCount++;
+			FigureForm figure = new FigureForm {Text = string.Format($"图像{figureCount}{title}")};
+			Invoke(new Action(() =>
+			{
+				figure.Show();
+				figure.SetNewImage(data, height);
+			}));
+		}
+
+		private bool validateAllSettings()
+		{
+			//todo: add verification to all settings
+			return true;
+		}
+
+		private void saveSetting()
+		{
+			settings.teststr = "This is a setting item.";
 		}
 
 		private void btnStart_Click(object sender, EventArgs e)
@@ -59,13 +68,7 @@ namespace PCCTView
 			waitForm.ShowDialog();
 			waitForm.Dispose();
 		}
-
-		private bool validateAllSettings()
-		{
-			//todo: add verification to all settings
-			return true;
-		}
-
+		
 		private void btnQuit_Click(object sender, EventArgs e)
 		{
 			Close();
@@ -80,14 +83,9 @@ namespace PCCTView
 			}
 		}
 
-		private void saveSetting()
-		{
-			settings.teststr = "This is a setting item.";
-		}
-
 		private void btnNewFigure_Click(object sender, EventArgs e)
 		{
-			NewFigure(null, 1);
+			PlotNewFigure(null, 1);
 		}
 	}
 }

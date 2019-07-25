@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,41 +13,46 @@ namespace FigureFormGL
 {
 	public partial class FigureForm : Form
 	{
-		public float[] image;
-		public int imHeight;
-		public int imWidth;
-
-		//todo: global mutex context test
-		private static bool isCurrent;	// whether opengl context is current
+		private Canvas canvas;
+		private float[] image;
+		private int imHeight;
+		private int imWidth;
 
 		public FigureForm()
 		{
 			InitializeComponent();
 		}
 
-		public void PlotImage(float[] imData, int width)
+		public void SetNewImage(float[] imData, int height)
 		{
-			image = imData ?? throw new ArgumentNullException("图像数据为空。");
-			if (width < 1)
-				width = 1;
-			imWidth = width;
-			imHeight = image.Length / imWidth;
-			//todo: add glview handling proc
+			if (imData == null)
+				return;
+			image = imData;
+			if (height < 1)
+				height = 1;
+			imHeight = height;
+			imWidth = image.Length / imHeight;
+			if (Visible)
+			{
+				glView.Invalidate();
+			}
 		}
 
 		private void glView_Load(object sender, EventArgs e)
 		{
-
+			canvas=new Canvas(glView);
+			canvas.ClearCanvas();
 		}
 
 		private void glView_Resize(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		private void glView_Paint(object sender, PaintEventArgs e)
 		{
-			
+			canvas.Paint();
 		}
+
 	}
 }

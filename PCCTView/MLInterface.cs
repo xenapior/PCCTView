@@ -96,7 +96,7 @@ namespace PCCTView
 			if (form == null)
 				throw new NullReferenceException("主窗口不存在");
 
-			form.NewFigure(mat,height,title);
+			form.PlotNewFigure(mat,height,title);
 		}
 	}
 }

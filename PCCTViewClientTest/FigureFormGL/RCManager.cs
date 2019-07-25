@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenTK;
 
 namespace FigureFormGL
 {
-	internal static class ViewHelper
+	public static class RCManager
 	{
-
-		public static void ViewInit()
-		{
-		}
-
-		public static void ViewPaint()
-		{
-			
-		}
+		public static GLControl CurrentRC;
 	}
 }

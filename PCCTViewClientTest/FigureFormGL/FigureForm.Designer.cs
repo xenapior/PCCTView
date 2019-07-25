@@ -37,11 +37,13 @@
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.glView = new OpenTK.GLControl();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolbar.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// toolbar
 			// 
+			this.toolbar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.toolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripButton,
             this.saveToolStripButton,
@@ -51,6 +53,7 @@
             this.helpToolStripButton});
 			this.toolbar.Location = new System.Drawing.Point(0, 0);
 			this.toolbar.Name = "toolbar";
+			this.toolbar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
 			this.toolbar.Size = new System.Drawing.Size(443, 25);
 			this.toolbar.TabIndex = 0;
 			this.toolbar.Text = "toolStrip1";
@@ -114,11 +117,20 @@
 			this.glView.Paint += new System.Windows.Forms.PaintEventHandler(this.glView_Paint);
 			this.glView.Resize += new System.EventHandler(this.glView_Resize);
 			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Location = new System.Drawing.Point(0, 312);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(443, 22);
+			this.statusStrip1.TabIndex = 2;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
 			// FigureForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(443, 334);
+			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.glView);
 			this.Controls.Add(this.toolbar);
 			this.Name = "FigureForm";
@@ -140,5 +152,6 @@
 		private System.Windows.Forms.ToolStripButton cutToolStripButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton helpToolStripButton;
+		private System.Windows.Forms.StatusStrip statusStrip1;
 	}
 }
