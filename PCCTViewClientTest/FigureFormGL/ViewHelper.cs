@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FigureFormGL
 {
-	internal class ViewUtility
+	internal static class ViewHelper
 	{
 
 		public static void ViewInit()

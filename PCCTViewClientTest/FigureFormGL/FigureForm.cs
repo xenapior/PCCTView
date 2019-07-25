@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using OpenTK.Graphics.ES20;
 
 namespace FigureFormGL
 {
@@ -20,14 +19,6 @@ namespace FigureFormGL
 		public FigureForm()
 		{
 			InitializeComponent();
-		}
-
-		private void btnRectROI_Click(object sender, EventArgs e)
-		{
-		}
-
-		private void btnLinROI_Click(object sender, EventArgs e)
-		{
 		}
 
 		private void glView_Load(object sender, EventArgs e)
