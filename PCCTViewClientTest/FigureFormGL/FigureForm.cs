@@ -11,16 +11,29 @@ using System.Windows.Forms;
 
 namespace FigureFormGL
 {
+	public delegate void onUpdateData(float[] newData, int height);
+	
 	public partial class FigureForm : Form
 	{
-		private Canvas canvas;
+		private CustomGL view;
 		private float[] image;
 		private int imHeight;
 		private int imWidth;
 
+		public event onUpdateData UpdateImage;
+
+
 		public FigureForm()
 		{
 			InitializeComponent();
+
+			view = new CustomGL(this)
+			{
+				Location = new Point(0, toolbar.Height),
+				Size = new Size(ClientSize.Width, ClientSize.Height - toolbar.Height),
+				Name = "GLview"
+			};
+			Controls.Add(view);
 		}
 
 		public void SetNewImage(float[] imData, int height)
@@ -32,27 +45,27 @@ namespace FigureFormGL
 				height = 1;
 			imHeight = height;
 			imWidth = image.Length / imHeight;
-			if (Visible)
-			{
-				glView.Invalidate();
-			}
+			UpdateImage?.Invoke(image,imHeight);
 		}
 
-		private void glView_Load(object sender, EventArgs e)
+		private void FigureForm_Resize(object sender, EventArgs e)
 		{
-			canvas=new Canvas(glView);
-			canvas.ClearCanvas();
+			view.Size = new Size(ClientSize.Width,ClientSize.Height-toolbar.Height);
 		}
 
-		private void glView_Resize(object sender, EventArgs e)
+		private void FigureForm_Activated(object sender, EventArgs e)
 		{
-			
+			view.ActivateRC();
 		}
 
-		private void glView_Paint(object sender, PaintEventArgs e)
+		private void FigureForm_Deactivate(object sender, EventArgs e)
 		{
-			canvas.Paint();
+			view.DeactivateRC();
 		}
 
+		private void FigureForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			view.Close();
+		}
 	}
 }

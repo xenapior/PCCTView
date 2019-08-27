@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -49,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomGL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomGL.Helper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FigureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,8 +68,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Canvas.cs" />
-    <Compile Include="RCManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FigureForm.resx">

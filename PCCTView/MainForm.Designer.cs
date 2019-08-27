@@ -47,21 +47,18 @@
 			this.spnNN = new System.Windows.Forms.NumericUpDown();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.edtNbin = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.label6 = new System.Windows.Forms.Label();
-			this.edtROImin = new System.Windows.Forms.TextBox();
-			this.edtROImax = new System.Windows.Forms.TextBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.edtRAP = new System.Windows.Forms.TextBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.btnOpenBrightFile = new System.Windows.Forms.Button();
-			this.label9 = new System.Windows.Forms.Label();
-			this.textBox3 = new System.Windows.Forms.TextBox();
-			this.label10 = new System.Windows.Forms.Label();
 			this.edtCurrentmax = new System.Windows.Forms.TextBox();
 			this.edtCurrentmin = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
+			this.edtRAP = new System.Windows.Forms.TextBox();
+			this.label8 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.edtROImax = new System.Windows.Forms.TextBox();
+			this.edtROImin = new System.Windows.Forms.TextBox();
+			this.edtNbin = new System.Windows.Forms.TextBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.label6 = new System.Windows.Forms.Label();
+			this.label10 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spnNN)).BeginInit();
@@ -82,7 +79,7 @@
 			// 
 			// btnQuit
 			// 
-			this.btnQuit.Location = new System.Drawing.Point(522, 354);
+			this.btnQuit.Location = new System.Drawing.Point(522, 210);
 			this.btnQuit.Name = "btnQuit";
 			this.btnQuit.Size = new System.Drawing.Size(98, 70);
 			this.btnQuit.TabIndex = 1;
@@ -116,7 +113,7 @@
 			this.panel1.Controls.Add(this.button1);
 			this.panel1.Controls.Add(this.btnNewFigure);
 			this.panel1.Controls.Add(this.btnStart);
-			this.panel1.Location = new System.Drawing.Point(12, 354);
+			this.panel1.Location = new System.Drawing.Point(12, 210);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(494, 70);
 			this.panel1.TabIndex = 4;
@@ -177,9 +174,9 @@
 			this.groupBox1.Controls.Add(this.label4);
 			this.groupBox1.Controls.Add(this.label3);
 			this.groupBox1.Controls.Add(this.spnNN);
-			this.groupBox1.Location = new System.Drawing.Point(12, 141);
+			this.groupBox1.Location = new System.Drawing.Point(12, 105);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(163, 207);
+			this.groupBox1.Size = new System.Drawing.Size(163, 95);
 			this.groupBox1.TabIndex = 11;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "数据采集参数";
@@ -234,9 +231,6 @@
 			// 
 			// groupBox2
 			// 
-			this.groupBox2.Controls.Add(this.btnOpenBrightFile);
-			this.groupBox2.Controls.Add(this.label9);
-			this.groupBox2.Controls.Add(this.textBox3);
 			this.groupBox2.Controls.Add(this.edtSampFile);
 			this.groupBox2.Controls.Add(this.btnOpenDarkFile);
 			this.groupBox2.Controls.Add(this.label1);
@@ -245,7 +239,7 @@
 			this.groupBox2.Controls.Add(this.edtDarkFile);
 			this.groupBox2.Location = new System.Drawing.Point(12, 8);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(608, 127);
+			this.groupBox2.Size = new System.Drawing.Size(608, 91);
 			this.groupBox2.TabIndex = 12;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "数据文件路径";
@@ -264,16 +258,78 @@
 			this.groupBox3.Controls.Add(this.edtNbin);
 			this.groupBox3.Controls.Add(this.label5);
 			this.groupBox3.Controls.Add(this.label6);
-			this.groupBox3.Location = new System.Drawing.Point(195, 141);
+			this.groupBox3.Location = new System.Drawing.Point(195, 105);
 			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(425, 207);
+			this.groupBox3.Size = new System.Drawing.Size(425, 95);
 			this.groupBox3.TabIndex = 15;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "图像处理参数";
 			// 
+			// edtCurrentmax
+			// 
+			this.edtCurrentmax.Location = new System.Drawing.Point(196, 61);
+			this.edtCurrentmax.Name = "edtCurrentmax";
+			this.edtCurrentmax.Size = new System.Drawing.Size(51, 21);
+			this.edtCurrentmax.TabIndex = 22;
+			// 
+			// edtCurrentmin
+			// 
+			this.edtCurrentmin.Location = new System.Drawing.Point(113, 61);
+			this.edtCurrentmin.Name = "edtCurrentmin";
+			this.edtCurrentmin.Size = new System.Drawing.Size(51, 21);
+			this.edtCurrentmin.TabIndex = 21;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
+			this.label11.Location = new System.Drawing.Point(12, 64);
+			this.label11.Name = "label11";
+			this.label11.Size = new System.Drawing.Size(95, 12);
+			this.label11.TabIndex = 20;
+			this.label11.Text = "电流校正宽度  L";
+			// 
+			// edtRAP
+			// 
+			this.edtRAP.Location = new System.Drawing.Point(357, 61);
+			this.edtRAP.Name = "edtRAP";
+			this.edtRAP.Size = new System.Drawing.Size(51, 21);
+			this.edtRAP.TabIndex = 19;
+			// 
+			// label8
+			// 
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(267, 64);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(71, 12);
+			this.label8.TabIndex = 18;
+			this.label8.Text = "虚拟转轴RAP";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(170, 27);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(23, 12);
+			this.label7.TabIndex = 17;
+			this.label7.Text = "max";
+			// 
+			// edtROImax
+			// 
+			this.edtROImax.Location = new System.Drawing.Point(196, 24);
+			this.edtROImax.Name = "edtROImax";
+			this.edtROImax.Size = new System.Drawing.Size(51, 21);
+			this.edtROImax.TabIndex = 16;
+			// 
+			// edtROImin
+			// 
+			this.edtROImin.Location = new System.Drawing.Point(113, 24);
+			this.edtROImin.Name = "edtROImin";
+			this.edtROImin.Size = new System.Drawing.Size(51, 21);
+			this.edtROImin.TabIndex = 15;
+			// 
 			// edtNbin
 			// 
-			this.edtNbin.Location = new System.Drawing.Point(103, 61);
+			this.edtNbin.Location = new System.Drawing.Point(357, 24);
 			this.edtNbin.Name = "edtNbin";
 			this.edtNbin.Size = new System.Drawing.Size(51, 21);
 			this.edtNbin.TabIndex = 14;
@@ -281,7 +337,7 @@
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(8, 64);
+			this.label5.Location = new System.Drawing.Point(262, 27);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(89, 12);
 			this.label5.TabIndex = 13;
@@ -290,113 +346,26 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(8, 27);
+			this.label6.Location = new System.Drawing.Point(13, 28);
 			this.label6.Name = "label6";
-			this.label6.Size = new System.Drawing.Size(71, 12);
+			this.label6.Size = new System.Drawing.Size(95, 12);
 			this.label6.TabIndex = 12;
-			this.label6.Text = "成像区域ROI";
-			// 
-			// edtROImin
-			// 
-			this.edtROImin.Location = new System.Drawing.Point(103, 24);
-			this.edtROImin.Name = "edtROImin";
-			this.edtROImin.Size = new System.Drawing.Size(51, 21);
-			this.edtROImin.TabIndex = 15;
-			// 
-			// edtROImax
-			// 
-			this.edtROImax.Location = new System.Drawing.Point(177, 24);
-			this.edtROImax.Name = "edtROImax";
-			this.edtROImax.Size = new System.Drawing.Size(51, 21);
-			this.edtROImax.TabIndex = 16;
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(160, 27);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(11, 12);
-			this.label7.TabIndex = 17;
-			this.label7.Text = "-";
-			// 
-			// edtRAP
-			// 
-			this.edtRAP.Location = new System.Drawing.Point(103, 100);
-			this.edtRAP.Name = "edtRAP";
-			this.edtRAP.Size = new System.Drawing.Size(51, 21);
-			this.edtRAP.TabIndex = 19;
-			// 
-			// label8
-			// 
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(8, 103);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(71, 12);
-			this.label8.TabIndex = 18;
-			this.label8.Text = "虚拟转轴RAP";
-			// 
-			// btnOpenBrightFile
-			// 
-			this.btnOpenBrightFile.Location = new System.Drawing.Point(527, 94);
-			this.btnOpenBrightFile.Name = "btnOpenBrightFile";
-			this.btnOpenBrightFile.Size = new System.Drawing.Size(75, 21);
-			this.btnOpenBrightFile.TabIndex = 13;
-			this.btnOpenBrightFile.Text = "浏览";
-			this.btnOpenBrightFile.UseVisualStyleBackColor = true;
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(8, 98);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(77, 12);
-			this.label9.TabIndex = 12;
-			this.label9.Text = "明场数据文件";
-			// 
-			// textBox3
-			// 
-			this.textBox3.Location = new System.Drawing.Point(89, 94);
-			this.textBox3.Name = "textBox3";
-			this.textBox3.Size = new System.Drawing.Size(432, 21);
-			this.textBox3.TabIndex = 11;
+			this.label6.Text = "成像区域ROI min";
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(160, 139);
+			this.label10.Location = new System.Drawing.Point(179, 64);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(11, 12);
 			this.label10.TabIndex = 23;
-			this.label10.Text = "-";
-			// 
-			// edtCurrentmax
-			// 
-			this.edtCurrentmax.Location = new System.Drawing.Point(177, 136);
-			this.edtCurrentmax.Name = "edtCurrentmax";
-			this.edtCurrentmax.Size = new System.Drawing.Size(51, 21);
-			this.edtCurrentmax.TabIndex = 22;
-			// 
-			// edtCurrentmin
-			// 
-			this.edtCurrentmin.Location = new System.Drawing.Point(103, 136);
-			this.edtCurrentmin.Name = "edtCurrentmin";
-			this.edtCurrentmin.Size = new System.Drawing.Size(51, 21);
-			this.edtCurrentmin.TabIndex = 21;
-			// 
-			// label11
-			// 
-			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(8, 139);
-			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(77, 12);
-			this.label11.TabIndex = 20;
-			this.label11.Text = "电流校正区域";
+			this.label10.Text = "R";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(632, 438);
+			this.ClientSize = new System.Drawing.Size(632, 292);
 			this.Controls.Add(this.groupBox3);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
@@ -439,11 +408,7 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.NumericUpDown spnNN;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.Button btnOpenBrightFile;
-		private System.Windows.Forms.Label label9;
-		private System.Windows.Forms.TextBox textBox3;
 		private System.Windows.Forms.GroupBox groupBox3;
-		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.TextBox edtCurrentmax;
 		private System.Windows.Forms.TextBox edtCurrentmin;
 		private System.Windows.Forms.Label label11;
@@ -455,5 +420,6 @@
 		private System.Windows.Forms.TextBox edtNbin;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.Label label10;
 	}
 }

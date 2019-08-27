@@ -36,8 +36,6 @@
 			this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.glView = new OpenTK.GLControl();
-			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolbar.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -104,37 +102,18 @@
 			this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
 			this.helpToolStripButton.Text = "He&lp";
 			// 
-			// glView
-			// 
-			this.glView.BackColor = System.Drawing.Color.Black;
-			this.glView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.glView.Location = new System.Drawing.Point(0, 25);
-			this.glView.Name = "glView";
-			this.glView.Size = new System.Drawing.Size(443, 309);
-			this.glView.TabIndex = 1;
-			this.glView.VSync = false;
-			this.glView.Load += new System.EventHandler(this.glView_Load);
-			this.glView.Paint += new System.Windows.Forms.PaintEventHandler(this.glView_Paint);
-			this.glView.Resize += new System.EventHandler(this.glView_Resize);
-			// 
-			// statusStrip1
-			// 
-			this.statusStrip1.Location = new System.Drawing.Point(0, 312);
-			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(443, 22);
-			this.statusStrip1.TabIndex = 2;
-			this.statusStrip1.Text = "statusStrip1";
-			// 
 			// FigureForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(443, 334);
-			this.Controls.Add(this.statusStrip1);
-			this.Controls.Add(this.glView);
 			this.Controls.Add(this.toolbar);
 			this.Name = "FigureForm";
 			this.Text = "FigureForm";
+			this.Activated += new System.EventHandler(this.FigureForm_Activated);
+			this.Deactivate += new System.EventHandler(this.FigureForm_Deactivate);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FigureForm_FormClosing);
+			this.Resize += new System.EventHandler(this.FigureForm_Resize);
 			this.toolbar.ResumeLayout(false);
 			this.toolbar.PerformLayout();
 			this.ResumeLayout(false);
@@ -145,13 +124,11 @@
 		#endregion
 
 		private System.Windows.Forms.ToolStrip toolbar;
-		private OpenTK.GLControl glView;
 		private System.Windows.Forms.ToolStripButton openToolStripButton;
 		private System.Windows.Forms.ToolStripButton saveToolStripButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
 		private System.Windows.Forms.ToolStripButton cutToolStripButton;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripButton helpToolStripButton;
-		private System.Windows.Forms.StatusStrip statusStrip1;
 	}
 }

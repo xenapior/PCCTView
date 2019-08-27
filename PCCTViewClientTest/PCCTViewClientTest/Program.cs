@@ -19,7 +19,7 @@ namespace PCCTViewClientTest
 
 Repeat:		do
 			{
-				Thread.Sleep(0);
+				Thread.Sleep(50);
 				if (!MLInterface.IsWindowExist())
 					return;
 			}
