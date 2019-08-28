@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,9 @@ namespace PCCTView
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
+#if DEBUG
+			return;
+#endif
 			var res = MessageBox.Show("您确定要退出吗？", "退出程序", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 			if (res == DialogResult.Cancel)
 			{
@@ -86,6 +90,11 @@ namespace PCCTView
 		}
 
 		private void btnNewFigure_Click(object sender, EventArgs e)
+		{
+			PlotNewFigure(new float[]{0,1,2,3,4,5},2);
+		}
+
+		private void MainForm_Load(object sender, EventArgs e)
 		{
 			PlotNewFigure(new float[]{0,1,2,3,4,5},2);
 		}

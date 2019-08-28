@@ -47,6 +47,7 @@
 			this.spnNN = new System.Windows.Forms.NumericUpDown();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.label10 = new System.Windows.Forms.Label();
 			this.edtCurrentmax = new System.Windows.Forms.TextBox();
 			this.edtCurrentmin = new System.Windows.Forms.TextBox();
 			this.label11 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
 			this.edtNbin = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
-			this.label10 = new System.Windows.Forms.Label();
 			this.panel1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.spnNN)).BeginInit();
@@ -265,6 +265,15 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "图像处理参数";
 			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(179, 64);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(11, 12);
+			this.label10.TabIndex = 23;
+			this.label10.Text = "R";
+			// 
 			// edtCurrentmax
 			// 
 			this.edtCurrentmax.Location = new System.Drawing.Point(196, 61);
@@ -352,15 +361,6 @@
 			this.label6.TabIndex = 12;
 			this.label6.Text = "成像区域ROI min";
 			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(179, 64);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(11, 12);
-			this.label10.TabIndex = 23;
-			this.label10.Text = "R";
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -377,6 +377,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "相衬CT数据处理程序 PCCT Viewer";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.panel1.ResumeLayout(false);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();

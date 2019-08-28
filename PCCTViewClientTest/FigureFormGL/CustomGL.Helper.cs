@@ -193,6 +193,35 @@ void main(){
 			setVPMatrix();
 		}
 
+		private void resizeView()
+		{
+			float w = ClientSize.Width, h = ClientSize.Height;
+			w = w < 1 ? 1 : w;
+			h = h < 1 ? 1 : h;
+			if (image == null)
+			{
+				viewWidth = w;
+				viewHeight = h;
+				setVPMatrix();
+				return;
+			}
+
+			float aspView=h/w;
+			float aspImg = (float) imHeight / imWidth;
+			if (aspView > aspImg)
+			{
+				viewWidth = imWidth;
+				viewHeight = viewWidth * aspView;
+			}
+			else
+			{
+				viewHeight = imHeight;
+				viewWidth = viewHeight / aspView;
+			}
+			viewCenter=new Vector2(0.5f*imWidth,0.5f*imHeight);
+			setVPMatrix();
+		}
+
 		private void renderData()
 		{
 			GL.UseProgram(progData);
@@ -203,5 +232,6 @@ void main(){
 			GL.Uniform1(2,5f);
 			GL.DrawArrays(PrimitiveType.TriangleStrip,0,4);
 		}
+
 	}
 }

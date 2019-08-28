@@ -33,7 +33,10 @@ namespace FigureFormGL
 
 		private void CustomGL_MouseWheel(object sender, MouseEventArgs e)
 		{
-			throw new NotImplementedException();
+			viewWidth *= (1 + e.Delta/480f);
+			viewHeight *= (1 + e.Delta/480f);
+			setVPMatrix();
+			Invalidate();
 		}
 
 		private void CustomGL_Load(object sender, System.EventArgs e)
@@ -57,8 +60,7 @@ namespace FigureFormGL
 			w = w < 1 ? 1 : w;
 			h = h < 1 ? 1 : h;
 			GL.Viewport(0, 0, w, h);
-			viewHeight = viewWidth * h / w;
-			setVPMatrix();
+			resizeView();
 		}
 
 		private void CustomGL_Paint(object sender, PaintEventArgs e)
