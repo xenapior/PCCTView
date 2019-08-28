@@ -26,15 +26,20 @@ layout(location=1) in vec2 uv;
 layout(location=0) uniform mat4 mvp;
 out vec2 texcoord;
 void main(){
-	gl_Position=mvp*vec4(pos,0.5f,1f);
+	gl_Position=mvp*vec4(pos,0,1f);
 	texcoord=uv;
 }";
 			string dataFSsrc = @"#version 430
 layout(binding=0) uniform sampler2D texdata;
+layout(location=1) uniform float gMin;
+layout(location=2) uniform float gMax;
 in vec2 texcoord;
 out vec4 fragColor;
 void main(){
-	fragColor=vec4(1f,0,0,1f);
+	vec4 pix=texture(texdata,texcoord);
+	float g=clamp(pix.r,gMin,gMax);
+	g=(g-gMin)/(gMax-gMin);
+	fragColor=vec4(g,g,g,1f);
 }";
 			progData=  makeGLProgram(dataVSsrc, dataFSsrc);
 		}
@@ -95,26 +100,29 @@ void main(){
 			float[] quv={0, 0, 1, 0, 0, 1, 1, 1};
 
 			vaoQuad = GL.GenVertexArray();
-			vboQuadVert = GL.GenBuffer();
 			GL.BindVertexArray(vaoQuad);
-			GL.BindBuffer(BufferTarget.ArrayBuffer, vboQuadVert);
-			GL.BufferData(BufferTarget.ArrayBuffer,qv.Length*sizeof(float),qv,BufferUsageHint.StaticDraw);
-			GL.VertexAttribPointer(0, 2, VertexAttribPointerType.Float, false, 0, 0);
-			vboQuadUv = GL.GenBuffer();
-			GL.BindBuffer(BufferTarget.ArrayBuffer, vboQuadUv);
-			GL.BufferData(BufferTarget.ArrayBuffer,quv.Length*sizeof(float),quv,BufferUsageHint.StaticDraw);
-			GL.VertexAttribPointer(1, 2, VertexAttribPointerType.Float, false, 0, 0);
-			GL.EnableVertexAttribArray(1);
+			{
+				vboQuadVert = GL.GenBuffer();
+				GL.BindBuffer(BufferTarget.ArrayBuffer, vboQuadVert);
+				GL.BufferData(BufferTarget.ArrayBuffer, qv.Length * sizeof(float), qv, BufferUsageHint.StaticDraw);
+				GL.VertexAttribPointer(0, 2, VertexAttribPointerType.Float, false, 0, 0);
+				GL.EnableVertexAttribArray(0);
+
+				vboQuadUv = GL.GenBuffer();
+				GL.BindBuffer(BufferTarget.ArrayBuffer, vboQuadUv);
+				GL.BufferData(BufferTarget.ArrayBuffer, quv.Length * sizeof(float), quv, BufferUsageHint.StaticDraw);
+				GL.VertexAttribPointer(1, 2, VertexAttribPointerType.Float, false, 0, 0);
+				GL.EnableVertexAttribArray(1);
+			}
 			GL.BindVertexArray(0);
 
-//			GL.ActiveTexture(TextureUnit.Texture0);
 			texData=GL.GenTexture();
-			GL.BindTexture(TextureTarget.ProxyTexture2D, texData);
+			GL.BindTexture(TextureTarget.Texture2D, texData);
 			GL.TexParameter(TextureTarget.Texture2D,TextureParameterName.TextureMinFilter,(int)TextureMinFilter.LinearMipmapLinear);
 			GL.TexParameter(TextureTarget.Texture2D,TextureParameterName.TextureMagFilter,(int)TextureMagFilter.Nearest);
-			GL.TexParameter(TextureTarget.Texture2D,TextureParameterName.TextureWrapS,(int)TextureWrapMode.Repeat);
-			GL.TexParameter(TextureTarget.Texture2D,TextureParameterName.TextureWrapT,(int)TextureWrapMode.Repeat);
-			GL.TexImage2D(TextureTarget.Texture2D,0,PixelInternalFormat.Luminance,imHeight,imWidth,0,PixelFormat.Luminance,PixelType.Float,image);
+			GL.TexParameter(TextureTarget.Texture2D,TextureParameterName.TextureWrapS,(int)TextureWrapMode.ClampToEdge);
+			GL.TexParameter(TextureTarget.Texture2D,TextureParameterName.TextureWrapT,(int)TextureWrapMode.ClampToEdge);
+			GL.TexImage2D(TextureTarget.Texture2D,0,PixelInternalFormat.R32f,imWidth,imHeight,0,PixelFormat.Red,PixelType.Float,image);
 			GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
 		}
 
@@ -122,16 +130,19 @@ void main(){
 		{
 			float cx = viewCenter.X, cy = viewCenter.Y;
 			float vw = viewWidth / 2, vh = viewHeight / 2;
-			vpMat = Matrix4.CreateOrthographicOffCenter(cx - vw, cx + vw, cy - vh, cy + vh, -1, 1);
+			vpMat = Matrix4.CreateOrthographicOffCenter(cx - vw, cx + vw, cy - vh, cy + vh, 1, -1);
 			vpMatInv = vpMat.Inverted();
 		}
 
 		private Vector3 screenToWorld(int x, int y)
 		{
+			float w = ClientSize.Width, h = ClientSize.Height;
+			w = w < 1 ? 1 : w;
+			h = h < 1 ? 1 : h;
 			Vector4 ndc = new Vector4
 			{
-				X = x * 2f / viewWidth - 1f,
-				Y = (viewHeight - y) * 2f / viewHeight - 1f,
+				X = x * 2f / w - 1f,
+				Y = (h - y) * 2f / h - 1f,
 				Z = 0,
 				W = 1f
 			};
@@ -162,7 +173,6 @@ void main(){
 
 		private void resetView()
 		{
-			viewCenter=new Vector2(0f);
 			float aspImg = (float) imHeight / imWidth;
 			float w = ClientSize.Width, h = ClientSize.Height;
 			w = w < 1 ? 1 : w;
@@ -179,16 +189,19 @@ void main(){
 				viewHeight = imHeight;
 				viewWidth = viewHeight / aspView;
 			}
+			viewCenter=new Vector2(0.5f*imWidth,0.5f*imHeight);
 			setVPMatrix();
 		}
 
 		private void renderData()
 		{
-//			GL.ActiveTexture(TextureUnit.Texture0);
+			GL.UseProgram(progData);
 			GL.BindTexture(TextureTarget.Texture2D,texData);
 			GL.BindVertexArray(vaoQuad);
 			GL.UniformMatrix4(0,false,ref vpMat);
-			GL.DrawArrays(PrimitiveType.TriangleStrip,0,6);
+			GL.Uniform1(1,0f);
+			GL.Uniform1(2,5f);
+			GL.DrawArrays(PrimitiveType.TriangleStrip,0,4);
 		}
 	}
 }

@@ -27,7 +27,13 @@ namespace FigureFormGL
 			Load += CustomGL_Load;
 			Resize += CustomGL_Resize;
 			MouseDown += CustomGL_MouseDown;
+			MouseWheel += CustomGL_MouseWheel;
 			viewCenter = new Vector2(0f, 0f);
+		}
+
+		private void CustomGL_MouseWheel(object sender, MouseEventArgs e)
+		{
+			throw new NotImplementedException();
 		}
 
 		private void CustomGL_Load(object sender, System.EventArgs e)
@@ -72,8 +78,8 @@ namespace FigureFormGL
 			image = imData;
 			if (height < 1)
 				height = 1;
-			imHeight = height;
-			imWidth = image.Length / imHeight;
+			imWidth = height;
+			imHeight = image.Length / imWidth;
 
 			ActivateRC();
 			makeDataAsset();
