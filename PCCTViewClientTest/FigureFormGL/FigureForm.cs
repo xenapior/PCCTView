@@ -15,19 +15,20 @@ namespace FigureFormGL
 	
 	public partial class FigureForm : Form
 	{
-		private CustomGL view;
+		private static AnalyzerForm analyzer;
+		private CustomGLControl.CustomGL view;
 		private float[] image;
 		private int imHeight;
 		private int imWidth;
 
+
 		public event onUpdateData UpdateImage;
-
-
+		
 		public FigureForm()
 		{
 			InitializeComponent();
 
-			view = new CustomGL(this)
+			view = new CustomGLControl.CustomGL(this)
 			{
 				Location = new Point(0, toolbar.Height),
 				Size = new Size(ClientSize.Width, ClientSize.Height - toolbar.Height),

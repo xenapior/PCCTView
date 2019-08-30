@@ -1,27 +1,32 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using OpenTK;
 using OpenTK.Graphics.OpenGL4;
 
-namespace FigureFormGL
+namespace FigureFormGL.CustomGLControl
 {
 	internal partial class CustomGL : GLControl
 	{
 		private bool isActive;
 		//cached data
-		private float[] image;
-		private int imHeight;
-		private int imWidth;
+		public float[] image;
+		public int imHeight;
+		public int imWidth;
 		//view settings
-		private Vector2 viewCenter;
-		private float viewWidth;
-		private float viewHeight;
-		private Matrix4 vpMatInv;
+		public Vector2 viewCenter;
+		public float viewWidth;
+		public float viewHeight;
+		public Matrix4 matVP;
+		public float grayscaleMin, grayscaleMax;
+		
+		private Matrix4 matVPInv;
+		private List<UIToolBase> actions;
 
-		public CustomGL(FigureForm parent)
+		public CustomGL(FigureForm parent) 
 		{
+			actions=new List<UIToolBase>();
 			parent.UpdateImage += SetNewImage;
 			Paint += CustomGL_Paint;
 			Load += CustomGL_Load;
@@ -31,6 +36,12 @@ namespace FigureFormGL
 			viewCenter = new Vector2(0f, 0f);
 		}
 
+		private void CustomGL_Load(object sender, System.EventArgs e)
+		{
+			GL.ClearColor(Color.Teal);
+			prepareProgram();
+		}
+
 		private void CustomGL_MouseWheel(object sender, MouseEventArgs e)
 		{
 			viewWidth *= (1 + e.Delta/480f);
@@ -38,19 +49,14 @@ namespace FigureFormGL
 			setVPMatrix();
 			Invalidate();
 		}
-
-		private void CustomGL_Load(object sender, System.EventArgs e)
-		{
-			GL.ClearColor(Color.Teal);
-			prepareProgram();
-		}
-
+		
 		private void CustomGL_MouseDown(object sender, MouseEventArgs e)
 		{
 			ActivateRC();
 			viewCenter = screenToWorld(e.X, e.Y).Xy;
 			setVPMatrix();
 			Invalidate();
+			Capture = true;
 		}
 
 		private void CustomGL_Resize(object sender, System.EventArgs e)
@@ -80,8 +86,10 @@ namespace FigureFormGL
 			image = imData;
 			if (height < 1)
 				height = 1;
-			imWidth = height;
-			imHeight = image.Length / imWidth;
+			imHeight = height;
+			imWidth = image.Length / imHeight;
+			grayscaleMin = imData.Min();
+			grayscaleMax = imData.Max();
 
 			ActivateRC();
 			makeDataAsset();
@@ -104,8 +112,10 @@ namespace FigureFormGL
 
 		public void Close()
 		{
+			Capture = false;
 			ActivateRC();
 			doCleanUp();
 		}
+
 	}
 }

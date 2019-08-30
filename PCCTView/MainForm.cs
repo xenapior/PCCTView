@@ -96,7 +96,7 @@ namespace PCCTView
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			PlotNewFigure(new float[]{0,1,2,3,4,5},2);
+			PlotNewFigure(Enumerable.Range(0,60).Select(x=>x*1f).ToArray(),6);
 		}
 	}
 }

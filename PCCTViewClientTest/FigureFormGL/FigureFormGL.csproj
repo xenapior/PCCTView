@@ -50,12 +50,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomGL.cs">
+    <Compile Include="AnalyzerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalyzerForm.Designer.cs">
+      <DependentUpon>AnalyzerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomGLControl\CustomGL.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CustomGL.Helper.cs">
+    <Compile Include="CustomGLControl\CustomGL.Helper.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="CustomGLControl\DataDisplayTool.cs" />
     <Compile Include="FigureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,8 +75,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="CustomGLControl\UIToolBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AnalyzerForm.resx">
+      <DependentUpon>AnalyzerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FigureForm.resx">
       <DependentUpon>FigureForm.cs</DependentUpon>
     </EmbeddedResource>
