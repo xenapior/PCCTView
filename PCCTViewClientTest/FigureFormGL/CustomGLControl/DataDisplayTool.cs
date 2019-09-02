@@ -3,17 +3,18 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace FigureFormGL.CustomGLControl
 {
-	internal sealed class DataDisplayTool : UIToolBase
+	internal sealed class DataDisplayTool : UITool
 	{
-		private int progData;
+		private int progGLSL;
 		private int vboQuadVert;
 		private int vboQuadUv;
 		private int vaoQuad;
 		private int texData;
+		//logic
+		private Vector2 oldPos;
 
-		public DataDisplayTool(CustomGL targetControl, bool enabled = true) : base(targetControl, enabled)
-		{
-		}
+		public DataDisplayTool(CustomGL targetControl) : base(targetControl)
+		{}
 
 		public void SetImage()
 		{
@@ -71,27 +72,27 @@ void main(){
 	g=(g-gMin)/(gMax-gMin);
 	fragColor=vec4(g,g,g,1f);
 }";
-			progData=  MakeGLProgram(dataVSsrc, dataFSsrc);
+			progGLSL=  MakeGLProgram(dataVSsrc, dataFSsrc);
 		}
 
-		public override void Draw(ref Vector2 point)
+		public override void Draw()
 		{
-			GL.UseProgram(progData);
+			GL.UseProgram(progGLSL);
 			GL.BindTexture(TextureTarget.Texture2D,texData);
 			GL.BindVertexArray(vaoQuad);
-			GL.UniformMatrix4(0,false,ref targetControl.matVP);
+			Matrix4 tmp = targetControl.matVP;
+			GL.UniformMatrix4(0,false, ref tmp);
 			GL.Uniform1(1,targetControl.grayscaleMin);
 			GL.Uniform1(2,targetControl.grayscaleMax);
 			GL.DrawArrays(PrimitiveType.TriangleStrip,0,4);
-
 		}
 
 		public override void DoCleanup()
 		{
 			GL.BindVertexArray(0);
 			GL.UseProgram(0);
-			if (progData != 0)
-				GL.DeleteProgram(progData);
+			if (progGLSL != 0)
+				GL.DeleteProgram(progGLSL);
 			if (vaoQuad != 0)
 				GL.DeleteProgram(vaoQuad);
 			if (vboQuadVert != 0)
@@ -100,6 +101,27 @@ void main(){
 				GL.DeleteBuffer(vboQuadUv);
 			if (texData!=0)
 				GL.DeleteTexture(texData);
+		}
+
+		public override void BeginSelect(ref Vector2 point)
+		{
+			IsSelecting = true;
+			NeedRedraw = true;
+			oldPos = point;
+		}
+
+		public override void ChangePoint(ref Vector2 point)
+		{
+			if (!IsSelecting)
+				return;
+			targetControl.viewCenter += (oldPos-point);
+			NeedRedraw = true;
+			targetControl.ChangeMagAndVPMat(1f);
+		}
+
+		public override void EndSelect()
+		{
+			IsSelecting = false;
 		}
 	}
 }

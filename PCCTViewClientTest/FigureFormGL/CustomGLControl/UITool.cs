@@ -4,19 +4,22 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace FigureFormGL.CustomGLControl
 {
-	internal abstract class UIToolBase
+	internal abstract class UITool
 	{
 		public CustomGL targetControl;
-		public bool Enabled;
+		public bool NeedRedraw;
+		public bool IsSelecting;
 
-		protected UIToolBase(CustomGL targetControl, bool enabled = false)
+		protected UITool(CustomGL targetControl)
 		{
 			this.targetControl = targetControl;
-			this.Enabled = enabled;
 		}
 		public abstract void Initialize();
-		public abstract void Draw(ref Vector2 point);
+		public abstract void Draw();
 		public abstract void DoCleanup();
+		public abstract void BeginSelect(ref Vector2 point);
+		public abstract void ChangePoint(ref Vector2 point);
+		public abstract void EndSelect();
 
 		protected int MakeGLProgram(string vsSrc, string fsSrc)
 		{
@@ -66,6 +69,5 @@ namespace FigureFormGL.CustomGLControl
 			GL.DeleteShader(fs);
 			return program;
 		}
-
 	}
 }

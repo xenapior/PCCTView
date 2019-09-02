@@ -68,5 +68,20 @@ namespace FigureFormGL
 		{
 			view.Close();
 		}
+
+		private void toolStripButton1_Click(object sender, EventArgs e)
+		{
+			view.ResetView();
+		}
+
+		private void toolStripButton2_Click(object sender, EventArgs e)
+		{
+			view.SetToolMode(1);
+		}
+
+		private void toolStripButton3_Click(object sender, EventArgs e)
+		{
+			view.SetToolMode(2);
+		}
 	}
 }
